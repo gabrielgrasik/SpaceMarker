@@ -54,4 +54,28 @@ def draw_menu():
     tela.blit(save_text,(10,10))
     tela.blit(load_text,(10,50))
     tela.blit(clear_text,(10,90))
-    
+
+marks = load_marks()
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            try:
+                save_marks(marks)
+            except Exception as e:
+                print(f"Erro ao Salvar as marcações: {e}")
+            running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            x, y = event.pos
+            nome = get_star_name()
+            marks[(x,y)] = nome
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_F10:
+                save_marks(marks)
+            elif event.key == pygame.K_F11:
+                marks = load_marks()
+            elif event.key == pygame.K_F12:
+                clear_marks()
+                marks = ()
+                
