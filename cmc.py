@@ -37,3 +37,21 @@ def draw_marks(marks):
         text = font.render(nome, True (255, 255, 255))
         tela.blit(text, (posicao[0] + 10, posicao [1] - 10))
 
+def get_star_name():
+    root = tk.Tk()
+    root.withdraw()
+    star_name = simpledialog.askstring("input", "Qual o nome da Estrela?", parent=root)
+    if star_name is None or star_name.strip() == "":
+        star_name = "Desconhecido"
+        root.destroy()
+        return star_name
+    
+def draw_menu():
+    font = pygame.font.Font(None, 36)
+    save_text = font.render('F10: Salvar' True (255,255,255) )
+    load_text = font.render('F11: Carregar' True (255,255,255) )
+    clear_text = font.render('F12: Limpar' True (255,255,255) )
+    tela.blit(save_text,(10,10))
+    tela.blit(load_text,(10,50))
+    tela.blit(clear_text,(10,90))
+    
